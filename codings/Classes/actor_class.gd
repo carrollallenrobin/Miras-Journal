@@ -12,6 +12,11 @@ var is_enemy: bool:
 	get(): return not is_party_member()
 
 
+func _init() -> void:
+	# See the note on `weapon`. Values saved in a resource are applied after this.
+	weapon = load("res://database/Items/KeyItems/DefaultWeapon.tres")
+
+
 ## Overridden by PartyMember. Plain Actors count as enemies, matching the old
 ## default for inline and test actors.
 func is_party_member() -> bool:
@@ -41,7 +46,10 @@ func is_party_member() -> bool:
 
 		return codename
 ## Determines the power of weapon attacks, and can override the actors standard attack
-@export var weapon: WeaponItem = preload("res://database/Items/KeyItems/DefaultWeapon.tres")
+## Default is assigned in _init rather than preloaded: a preload here makes Actor load
+## WeaponItem while compiling, and that class chain refers back to Actor (cyclic load
+## that breaks exported builds).
+@export var weapon: WeaponItem = null
 ##Used in system text, 0: subjective, 1: objective, 2: possessive, 3: -self
 @export_enum("it", "he", "she", "they") var pronouns: String = "it"
 

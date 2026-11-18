@@ -226,7 +226,9 @@ func vein_check() -> void:
 
 func check() -> void:
 	if Engine.is_editor_hint() or Battle.in_battle: return
-	if not is_instance_valid(Global.player): queue_free()
+	# No queue_free() when the player is missing: check() can fire while a room is
+	# loading, before the player spawns (always on single-threaded web builds), which
+	# deleted every interactable in the room. The branch below handles that case.
 	if bubble_always:
 		if not Global.controllable: disappear(true)
 		else: bubble()

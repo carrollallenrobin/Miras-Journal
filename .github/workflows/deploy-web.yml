@@ -1,0 +1,84 @@
+name: Deploy Web build to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deployment at a time; a newer push cancels the queued one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  GODOT_VERSION: 4.7.2
+  GODOT_RELEASE: stable
+  # Must match the "Web" preset: thread_support=false, extensions_support=false
+  WEB_TEMPLATE: web_nothreads_release.zip
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Godot and export template
+        id: godot-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}-${{ env.GODOT_RELEASE }}-${{ env.WEB_TEMPLATE }}
+
+      - name: Download Godot and Web export template
+        if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          TAG="${GODOT_VERSION}-${GODOT_RELEASE}"
+          BASE="https://github.com/godotengine/godot/releases/download/${TAG}"
+          mkdir -p ~/godot
+          curl -fsSL -o /tmp/godot.zip "${BASE}/Godot_v${TAG}_linux.x86_64.zip"
+          unzip -q /tmp/godot.zip -d ~/godot
+          mv ~/godot/Godot_v${TAG}_linux.x86_64 ~/godot/godot
+
+          # The full template archive is large; keep only the Web template we need.
+          TPL_DIR=~/.local/share/godot/export_templates/${GODOT_VERSION}.${GODOT_RELEASE}
+          mkdir -p "$TPL_DIR"
+          curl -fsSL -o /tmp/templates.tpz "${BASE}/Godot_v${TAG}_export_templates.tpz"
+          unzip -q -j /tmp/templates.tpz "templates/${WEB_TEMPLATE}" "templates/version.txt" -d "$TPL_DIR"
+          rm /tmp/godot.zip /tmp/templates.tpz
+
+      - name: Import project
+        # .godot/ is gitignored, so assets must be imported before exporting.
+        run: ~/godot/godot --headless --path . --import || true
+
+      - name: Export Web build
+        run: |
+          set -euo pipefail
+          mkdir -p build/web
+          ~/godot/godot --headless --path . --export-release "Web" "$GITHUB_WORKSPACE/build/web/index.html"
+          test -f build/web/index.pck || { echo "Export failed: index.pck missing"; exit 1; }
+          ls -lh build/web
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
