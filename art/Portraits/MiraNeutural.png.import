@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/MiraNeutural.png-4f3e71f7354c8d52e596f0ed08fe
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.6
 compress/hdr_compression=1

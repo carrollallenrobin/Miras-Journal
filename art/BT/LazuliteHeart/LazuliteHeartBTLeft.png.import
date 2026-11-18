@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b173w1g38hw3g"
-path.s3tc="res://.godot/imported/LazuliteHeartBTLeft.png-dcfc762a411440caa4630b35c69238e1.s3tc.ctex"
-path.etc2="res://.godot/imported/LazuliteHeartBTLeft.png-dcfc762a411440caa4630b35c69238e1.etc2.ctex"
+path="res://.godot/imported/LazuliteHeartBTLeft.png-dcfc762a411440caa4630b35c69238e1.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://art/BT/LazuliteHeart/LazuliteHeartBTLeft.png"
-dest_files=["res://.godot/imported/LazuliteHeartBTLeft.png-dcfc762a411440caa4630b35c69238e1.s3tc.ctex", "res://.godot/imported/LazuliteHeartBTLeft.png-dcfc762a411440caa4630b35c69238e1.etc2.ctex"]
+dest_files=["res://.godot/imported/LazuliteHeartBTLeft.png-dcfc762a411440caa4630b35c69238e1.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

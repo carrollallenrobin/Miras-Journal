@@ -17,7 +17,7 @@ dest_files=["res://.godot/imported/Yaru (Large).png-dd3f38c47fcedf881336bace72ea
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.6
 compress/hdr_compression=1

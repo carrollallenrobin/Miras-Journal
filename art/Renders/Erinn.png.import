@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfuq3a5bdug03"
-path.s3tc="res://.godot/imported/Erinn.png-b83c7ece243b6e663a0b3b6d8e1a16cf.s3tc.ctex"
-path.etc2="res://.godot/imported/Erinn.png-b83c7ece243b6e663a0b3b6d8e1a16cf.etc2.ctex"
+path="res://.godot/imported/Erinn.png-b83c7ece243b6e663a0b3b6d8e1a16cf.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://art/Renders/Erinn.png"
-dest_files=["res://.godot/imported/Erinn.png-b83c7ece243b6e663a0b3b6d8e1a16cf.s3tc.ctex", "res://.godot/imported/Erinn.png-b83c7ece243b6e663a0b3b6d8e1a16cf.etc2.ctex"]
+dest_files=["res://.godot/imported/Erinn.png-b83c7ece243b6e663a0b3b6d8e1a16cf.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.6
 compress/uastc_level=0

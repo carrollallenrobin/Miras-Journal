@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/AlcineNeutural.png-1e74173317285584d507efad33
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.6
 compress/hdr_compression=1

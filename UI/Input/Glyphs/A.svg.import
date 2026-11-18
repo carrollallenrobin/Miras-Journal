@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://db7yueymge8x6"
-path.s3tc="res://.godot/imported/A.svg-17c6bd1f3c77baa0018d2fdb3e4fd768.s3tc.ctex"
-path.etc2="res://.godot/imported/A.svg-17c6bd1f3c77baa0018d2fdb3e4fd768.etc2.ctex"
+path="res://.godot/imported/A.svg-17c6bd1f3c77baa0018d2fdb3e4fd768.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://UI/Input/Glyphs/A.svg"
-dest_files=["res://.godot/imported/A.svg-17c6bd1f3c77baa0018d2fdb3e4fd768.s3tc.ctex", "res://.godot/imported/A.svg-17c6bd1f3c77baa0018d2fdb3e4fd768.etc2.ctex"]
+dest_files=["res://.godot/imported/A.svg-17c6bd1f3c77baa0018d2fdb3e4fd768.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

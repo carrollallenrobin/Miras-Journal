@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr8vij2jxgub0"
-path.s3tc="res://.godot/imported/Plant.png-8e6889aee2e1749449a7db665170ae33.s3tc.ctex"
-path.etc2="res://.godot/imported/Plant.png-8e6889aee2e1749449a7db665170ae33.etc2.ctex"
+path="res://.godot/imported/Plant.png-8e6889aee2e1749449a7db665170ae33.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://art/Icons/Enemies/Plant.png"
-dest_files=["res://.godot/imported/Plant.png-8e6889aee2e1749449a7db665170ae33.s3tc.ctex", "res://.godot/imported/Plant.png-8e6889aee2e1749449a7db665170ae33.etc2.ctex"]
+dest_files=["res://.godot/imported/Plant.png-8e6889aee2e1749449a7db665170ae33.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bv7xtfs4qxpe1"
-path.s3tc="res://.godot/imported/Asteria_low.png-385b0031a6b870d3a09a3c5a300261e1.s3tc.ctex"
-path.etc2="res://.godot/imported/Asteria_low.png-385b0031a6b870d3a09a3c5a300261e1.etc2.ctex"
+path="res://.godot/imported/Asteria_low.png-385b0031a6b870d3a09a3c5a300261e1.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://art/Renders/Asteria_low.png"
-dest_files=["res://.godot/imported/Asteria_low.png-385b0031a6b870d3a09a3c5a300261e1.s3tc.ctex", "res://.godot/imported/Asteria_low.png-385b0031a6b870d3a09a3c5a300261e1.etc2.ctex"]
+dest_files=["res://.godot/imported/Asteria_low.png-385b0031a6b870d3a09a3c5a300261e1.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

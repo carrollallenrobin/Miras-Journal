@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvnuw1n43hcfj"
-path.bptc="res://.godot/imported/splash.png-ed62d2148f9beaba86227dc3f9840fc8.bptc.ctex"
-path.astc="res://.godot/imported/splash.png-ed62d2148f9beaba86227dc3f9840fc8.astc.ctex"
+path="res://.godot/imported/splash.png-ed62d2148f9beaba86227dc3f9840fc8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://art/Branding/splash.png"
-dest_files=["res://.godot/imported/splash.png-ed62d2148f9beaba86227dc3f9840fc8.bptc.ctex", "res://.godot/imported/splash.png-ed62d2148f9beaba86227dc3f9840fc8.astc.ctex"]
+dest_files=["res://.godot/imported/splash.png-ed62d2148f9beaba86227dc3f9840fc8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/LazRightBt2.png-e82905df9614f4a3ab95a6e11bedd
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

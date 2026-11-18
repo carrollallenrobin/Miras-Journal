@@ -24,6 +24,13 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # A hung Godot process would otherwise hold the runner for the 6h default.
+    timeout-minutes: 45
+    env:
+      # The runner ships an Android SDK; keep Godot's Android export plugin from
+      # spawning adb, whose background server can keep a step from finishing.
+      ANDROID_HOME: ""
+      ANDROID_SDK_ROOT: ""
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -55,17 +62,40 @@ jobs:
           unzip -q -j /tmp/templates.tpz "templates/${WEB_TEMPLATE}" "templates/version.txt" -d "$TPL_DIR"
           rm /tmp/godot.zip /tmp/templates.tpz
 
+      # Godot output goes to a file (not the step's pipe, with stdin closed) so a
+      # leftover child process can't keep the step open; `timeout` bounds each run.
       - name: Import project
         # .godot/ is gitignored, so assets must be imported before exporting.
-        run: ~/godot/godot --headless --path . --import || true
+        timeout-minutes: 20
+        run: |
+          mkdir -p logs
+          status=0
+          timeout 15m ~/godot/godot --headless --verbose --path . --import \
+            > logs/import.log 2>&1 < /dev/null || status=$?
+          tail -n 60 logs/import.log
+          echo "godot --import exit status: $status (124 = timed out)"
+          if [ "$status" = 124 ]; then exit 1; fi
 
       - name: Export Web build
+        timeout-minutes: 20
         run: |
-          set -euo pipefail
-          mkdir -p build/web
-          ~/godot/godot --headless --path . --export-release "Web" "$GITHUB_WORKSPACE/build/web/index.html"
+          set -uo pipefail
+          mkdir -p build/web logs
+          status=0
+          timeout 15m ~/godot/godot --headless --path . --export-release "Web" \
+            "$GITHUB_WORKSPACE/build/web/index.html" > logs/export.log 2>&1 < /dev/null || status=$?
+          tail -n 60 logs/export.log
+          echo "godot --export-release exit status: $status (124 = timed out)"
           test -f build/web/index.pck || { echo "Export failed: index.pck missing"; exit 1; }
           ls -lh build/web
+
+      - name: Upload Godot logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-logs
+          path: logs/
+          if-no-files-found: ignore
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
